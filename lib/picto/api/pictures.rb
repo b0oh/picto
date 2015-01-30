@@ -2,9 +2,11 @@ require 'grape'
 
 module Picto::Api
   class Pictures < Grape::API
+    format :json
+
     resources :pictures do
       get do
-        {qwe: 1}
+        {pictures: []}
       end
     end
   end
