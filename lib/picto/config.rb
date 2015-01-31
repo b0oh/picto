@@ -12,20 +12,30 @@ module Picto
   end
 
   class Config < Settingslogic
-    def self.root
-      @root ||= File.expand_path('..', ENV['BUNDLE_GEMFILE'])
-    end
+    class << self
+      def root
+        @root ||= File.expand_path('..', ENV['BUNDLE_GEMFILE'])
+      end
 
-    def self.config_path
-      @config_path ||= File.join(root, 'config')
-    end
+      def config_path
+        @config_path ||= File.join(root, 'config')
+      end
 
-    def self.env
-      @env ||= (ENV['RACK_ENV'] || ENV['RAILS_ENV'] || 'development').inquiry
-    end
+      def db_path
+        @config_path ||= File.join(root, 'db')
+      end
 
-    def self.file
-      @file ||= ENV['PICTO_CONFIG'] || File.join(config_path, 'config.yml')
+      def env
+        @env ||= (ENV['RACK_ENV'] || ENV['RAILS_ENV'] || 'development').inquiry
+      end
+
+      def file
+        @file ||= ENV['PICTO_CONFIG'] || File.join(config_path, 'config.yml')
+      end
+
+      def db_configurations
+        { env => self.db }
+      end
     end
 
     private
