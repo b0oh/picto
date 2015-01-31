@@ -22,7 +22,7 @@ module Picto
       end
 
       def db_path
-        @config_path ||= File.join(root, 'db')
+        @db_path ||= File.join(root, 'db')
       end
 
       def env
