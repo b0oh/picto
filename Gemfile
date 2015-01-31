@@ -5,6 +5,8 @@ ruby '2.2.0'
 gemspec
 
 gem 'grape', '~> 0.10.1'
+gem 'pry', '~> 0.10.1'
+gem 'rake', '~> 10.4.2'
 
 group :test do
   gem 'rspec', '~> 3.1.0'
