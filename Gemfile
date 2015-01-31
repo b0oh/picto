@@ -5,6 +5,7 @@ ruby '2.2.0'
 gemspec
 
 gem 'grape', '~> 0.10.1'
+gem 'settingslogic', '~> 2.0.9'
 gem 'pry', '~> 0.10.1'
 gem 'rake', '~> 10.4.2'
 

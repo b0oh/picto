@@ -1,0 +1,27 @@
+defaults: &defaults
+  key: "value"
+
+db_defaults: &db_defaults
+  adapter: postgresql
+  encoding: utf8
+  username: <username>
+  password: <password>
+  pool: 10
+
+development:
+  <<: *defaults
+  db:
+    <<: *db_defaults
+    database: picto_dev
+
+test:
+  <<: *defaults
+  db:
+    <<: *db_defaults
+    database: picto_test
+
+production:
+  <<: *defaults
+  db:
+    url: <%= ENV['DATABASE_URL'] %>
+    pool: 20
