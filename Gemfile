@@ -10,6 +10,8 @@ gem 'pry', '~> 0.10.1'
 gem 'rake', '~> 10.4.2'
 gem 'pg', '~> 0.18.1'
 gem 'activerecord', '~> 4.2.0'
+gem 'carrierwave', '~> 0.10.0'
+gem 'mini_magick', '~> 4.0.3'
 
 group :test do
   gem 'rspec', '~> 3.1.0'
