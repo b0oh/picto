@@ -6,6 +6,9 @@ defaults: &defaults
     access_token_secret: <%= ENV['DROPBOX_ACCESS_TOKEN_SECRET'] %>
     user_id: <%= ENV['DROPBOX_USER_UD'] %>
 
+  redis:
+    url: redis://localhost:6379
+
 db_defaults: &db_defaults
   adapter: postgresql
   encoding: utf8

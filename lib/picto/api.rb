@@ -1,4 +1,5 @@
 require 'forwardable'
+require 'sidekiq/web'
 require 'picto'
 require 'picto/api/root'
 
@@ -8,6 +9,7 @@ module Picto::Api
     def initialize
       @app = Rack::Builder.new do
         map('/api') { run Picto::Api::Root }
+        map('/sidekiq') { run Sidekiq::Web }
       end
     end
 

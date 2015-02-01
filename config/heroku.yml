@@ -5,5 +5,9 @@ production:
     access_token: <%= ENV['DROPBOX_ACCESS_TOKEN'] %>
     access_token_secret: <%= ENV['DROPBOX_ACCESS_TOKEN_SECRET'] %>
     user_id: <%= ENV['DROPBOX_USER_UD'] %>
+
+  redis:
+    url: <%= ENV['REDISTOGO_URL'] %>
+
   db:
     url: <%= ENV['DATABASE_URL'] %>

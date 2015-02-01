@@ -15,6 +15,8 @@ gem 'mini_magick', '~> 4.0.3'
 gem 'carrierwave-dropbox', '~> 1.2.1'
 gem 'active_model_serializers', '~> 0.9.3'
 gem 'rspec', '~> 3.1.0'
+gem 'sidekiq', '~> 3.3.1'
+gem 'sinatra'
 
 gem 'unicorn', '~> 4.8.3', group: :production
 

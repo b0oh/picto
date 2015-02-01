@@ -4,10 +4,11 @@ module Picto::Api
   class Mail < Grape::API
     resources :images do
       post :post  do
-        user = User.find_or_create_by!(email: params[:sender])
+        sender = params[:sender]
         params['attachment-count'].to_i.times do |i|
-          attachment = params["attachment-#{i+1}"]
-          user.images.create!(file: attachment.tempfile)
+          file = params["attachment-#{i+1}"][:tempfile]
+          Sidekiq.redis { |c| c.set(file.path, file.read) }
+          Picto::Worker::Image.perform_async(sender, file.path)
         end
         nil
       end
