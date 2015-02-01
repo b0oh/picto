@@ -14,9 +14,9 @@ gem 'carrierwave', '~> 0.10.0'
 gem 'mini_magick', '~> 4.0.3'
 gem 'carrierwave-dropbox', '~> 1.2.1'
 gem 'active_model_serializers', '~> 0.9.3'
+gem 'rspec', '~> 3.1.0'
 
 group :test do
-  gem 'rspec', '~> 3.1.0'
   gem 'rack-test', '~> 0.6.3'
   gem 'database_cleaner', '~> 1.4.0'
 end
