@@ -30,6 +30,9 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
+    carrierwave-dropbox (1.2.1)
+      carrierwave (~> 0.9)
+      dropbox-sdk (~> 1.6)
     coderay (1.1.0)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
@@ -37,6 +40,8 @@ GEM
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.2.5)
+    dropbox-sdk (1.6.4)
+      json
     equalizer (0.0.9)
     grape (0.10.1)
       activesupport
@@ -100,6 +105,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord (~> 4.2.0)
   carrierwave (~> 0.10.0)
+  carrierwave-dropbox (~> 1.2.1)
   database_cleaner (~> 1.4.0)
   grape (~> 0.10.1)
   mini_magick (~> 4.0.3)

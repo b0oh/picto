@@ -10,6 +10,7 @@ task(:environment) do
 end
 
 load 'active_record/railties/databases.rake'
+load 'carrierwave/dropbox/authorize.rake'
 
 desc 'Open a pry session preloaded with this app'
 task :console do
