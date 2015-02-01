@@ -1,6 +1,10 @@
 require 'carrierwave/orm/activerecord'
 
 class Image < ActiveRecord::Base
+  include Picto::UID
+
+  generate_uid { SecureRandom.hex(16) }
+
   belongs_to :user
 
   mount_uploader :file, Picto::ImageUploader

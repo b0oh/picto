@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 1) do
 
   create_table "images", force: :cascade do |t|
     t.integer  "user_id",    null: false
+    t.string   "uid",        null: false
     t.string   "file",       null: false
     t.integer  "width",      null: false
     t.integer  "height",     null: false
@@ -25,11 +26,15 @@ ActiveRecord::Schema.define(version: 1) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "images", ["uid"], name: "index_images_on_uid", unique: true, using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",      null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
   add_foreign_key "images", "users"
 end
