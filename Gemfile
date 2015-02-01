@@ -16,6 +16,8 @@ gem 'carrierwave-dropbox', '~> 1.2.1'
 gem 'active_model_serializers', '~> 0.9.3'
 gem 'rspec', '~> 3.1.0'
 
+gem 'unicorn', '~> 4.8.3', group: :production
+
 group :test do
   gem 'rack-test', '~> 0.6.3'
   gem 'database_cleaner', '~> 1.4.0'
