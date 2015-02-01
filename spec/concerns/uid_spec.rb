@@ -10,18 +10,18 @@ describe Picto::UID do
     end
 
     it 'success' do
-      image = ImageWithNoGen.new(user_id: user_id, uid: '666', file: '666', width: 400, height: 300)
+      image = ImageWithNoGen.new(user_id: user_id, uid: 'abcdef', file: 'file.png', width: 400, height: 300)
       expect(image.save).to eq(true)
     end
 
     it 'blank uid' do
-      image = ImageWithNoGen.new(user_id: user_id, file: '666', width: 400, height: 300)
+      image = ImageWithNoGen.new(user_id: user_id, file: 'file.png', width: 400, height: 300)
       image.save
       expect(image.errors[:uid].length).to be > 0
     end
 
     it 'invalid uid' do
-      image = ImageWithNoGen.new(user_id: user_id, uid: 'invalid uid', file: '666', width: 400, height: 300)
+      image = ImageWithNoGen.new(user_id: user_id, uid: 'invalid uid', file: 'file.png', width: 400, height: 300)
       image.save
       expect(image.errors[:uid].length).to be > 0
     end
@@ -38,24 +38,24 @@ describe Picto::UID do
     end
 
     it 'success' do
-      allow(Picto::UID).to receive(:plain_uid).with('666666') do
-        image = ImageWithGen.new(user_id: user_id, file: '666', width: 400, height: 300)
+      allow(Picto::UID).to receive(:plain_uid).with('abcdef') do
+        image = ImageWithGen.new(user_id: user_id, file: 'file.png', width: 400, height: 300)
         image.valid?
-        expect(image.uid).to eq('666666')
+        expect(image.uid).to eq('abcdef')
       end
     end
 
     it 'set uid manual' do
-      image = ImageWithGen.new(user_id: user_id, uid: '666', file: '666', width: 400, height: 300)
+      image = ImageWithGen.new(user_id: user_id, uid: 'abcdef', file: 'file.png', width: 400, height: 300)
       image.valid?
-      expect(image.uid).to eq('666')
+      expect(image.uid).to eq('abcdef')
     end
 
     it 'exceed retries' do
-      allow(Picto::UID).to receive(:plain_uid).with('666666') do
-        ImageWithGen.create!(user_id: user_id, uid: '666666', file: '666', width: 400, height: 300)
+      allow(Picto::UID).to receive(:plain_uid).with('abcdef') do
+        ImageWithGen.create!(user_id: user_id, uid: 'abcdef', file: 'file.png', width: 400, height: 300)
         expect do
-          ImageWithGen.create!(user_id: user_id, file: '666', width: 400, height: 300)
+          ImageWithGen.create!(user_id: user_id, file: 'file.png', width: 400, height: 300)
         end.to raise_error(ActiveRecord::RecordInvalid)
       end
     end
