@@ -10,6 +10,7 @@ CarrierWave.configure do |config|
   config.dropbox_access_token_secret = Picto.config.dropbox.access_token_secret
   config.dropbox_user_id             = Picto.config.dropbox.user_id
   config.dropbox_access_type         = 'dropbox'
+  config.storage                     = :dropbox
 end
 
 class Picto::ImageUploader < CarrierWave::Uploader::Base
@@ -17,8 +18,6 @@ class Picto::ImageUploader < CarrierWave::Uploader::Base
 
   WIDTH  = 400
   HEIGHT = 300
-
-  storage :dropbox
 
   process convert: 'png'
   process resize_to_fill: [WIDTH, HEIGHT]
