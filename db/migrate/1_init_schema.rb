@@ -5,7 +5,7 @@ class InitSchema < ActiveRecord::Migration
       t.timestamps     null: false
     end
 
-    create_table :pictures do |t|
+    create_table :images do |t|
       t.references :user,   null: false
       t.string     :file,   null: false
       t.integer    :width,  null: false
@@ -13,7 +13,7 @@ class InitSchema < ActiveRecord::Migration
       t.timestamps          null: false
     end
 
-    add_foreign_key :pictures, :users
+    add_foreign_key :images, :users
   end
 
   def down

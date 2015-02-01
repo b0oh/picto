@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 1) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "pictures", force: :cascade do |t|
+  create_table "images", force: :cascade do |t|
     t.integer  "user_id",    null: false
     t.string   "file",       null: false
     t.integer  "width",      null: false
@@ -31,5 +31,5 @@ ActiveRecord::Schema.define(version: 1) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "pictures", "users"
+  add_foreign_key "images", "users"
 end
