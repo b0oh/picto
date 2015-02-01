@@ -16,4 +16,5 @@ gem 'mini_magick', '~> 4.0.3'
 group :test do
   gem 'rspec', '~> 3.1.0'
   gem 'rack-test', '~> 0.6.3'
+  gem 'database_cleaner', '~> 1.4.0'
 end

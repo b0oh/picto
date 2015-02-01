@@ -24,4 +24,8 @@ module Picto::UID
       end
     end
   end
+
+  def self.plain_uid
+    SecureRandom.hex(16)
+  end
 end

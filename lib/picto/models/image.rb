@@ -3,7 +3,7 @@ require 'carrierwave/orm/activerecord'
 class Image < ActiveRecord::Base
   include Picto::UID
 
-  generate_uid { SecureRandom.hex(16) }
+  generate_uid { Picto::UID.plain_uid }
 
   belongs_to :user
 
