@@ -1,17 +1,17 @@
 require 'spec_helper'
 require 'picto/api'
-require 'picto/api/pictures'
+require 'picto/api/images'
 
-describe Picto::Api::Pictures do
+describe Picto::Api::Images do
   include Rack::Test::Methods
 
   def app
-    Picto::Api::Pictures
+    Picto::Api::Images
   end
 
-  describe 'GET /pictures' do
+  describe 'GET /images' do
     before do
-      get '/pictures'
+      get '/images'
     end
 
     let(:result) { ActiveSupport::JSON.decode(last_response.body) }
@@ -25,7 +25,7 @@ describe Picto::Api::Pictures do
     end
 
     it 'contains banners' do
-      expect(result['pictures']).to be_instance_of(Array)
+      expect(result['images']).to be_instance_of(Array)
     end
   end
 end
