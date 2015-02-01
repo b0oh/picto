@@ -51,11 +51,11 @@ describe Picto::UID do
       expect(image.uid).to eq('666')
     end
 
-    it 'it exceed retries' do
+    it 'exceed retries' do
       allow(Picto::UID).to receive(:plain_uid).with('666666') do
-        ImageWithGen.create!(user_id: user_id, uid: '666', file: '666', width: 400, height: 300)
+        ImageWithGen.create!(user_id: user_id, uid: '666666', file: '666', width: 400, height: 300)
         expect do
-          ImageWithGen.create!(user_id: user_id, uid: '666', file: '666', width: 400, height: 300)
+          ImageWithGen.create!(user_id: user_id, file: '666', width: 400, height: 300)
         end.to raise_error(ActiveRecord::RecordInvalid)
       end
     end
