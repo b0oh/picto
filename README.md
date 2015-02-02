@@ -82,8 +82,7 @@ GET: /api/images
 ```httph-javascript
 Status: 200 OK
 
-{
-  "images": [
+{ "images": [
     {
       "id": "abcdef",
       "url": "https://url-to-image",
@@ -120,5 +119,4 @@ POST: /api/images/post
 
 ```httph-javascript
 Status: 204 OK
-
 ```
