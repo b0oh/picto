@@ -11,7 +11,7 @@ module Picto::Api
       end
 
       def url
-        object.file.url
+        object.cached_url
       end
 
       def user

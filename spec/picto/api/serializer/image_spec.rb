@@ -8,12 +8,10 @@ describe Picto::Api::Serializer::Image do
     user = User.new(email: 'email')
     user.id = 101
 
-    file = Object.new
-    allow(file).to receive(:url).and_return '/url'
     image = Image.new(user: user,
                       width: 400,
-                      height: 300)
-    expect(image).to receive(:file).and_return(file).at_least(:once)
+                      height: 300,
+                      cached_url: '/url')
     image.uid = SecureRandom.uuid
     image
   end

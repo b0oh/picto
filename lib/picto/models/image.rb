@@ -10,6 +10,7 @@ class Image < ActiveRecord::Base
   mount_uploader :file, Picto::ImageUploader
 
   before_validation :update_dimensions
+  after_commit :cache_url
 
   validates :file, :width, :height, presence: true
 
@@ -24,5 +25,12 @@ class Image < ActiveRecord::Base
 
   def dimensions_set_manually?
     width_changed? && height_changed?
+  end
+
+  def cache_url
+    # HACK: we need to find it again, because dropbox uploader at first time give nil at url
+    image = self.class.find(id)
+    url   = image.file.url
+    image.update_columns cached_url: url
   end
 end
