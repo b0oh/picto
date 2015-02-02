@@ -35,11 +35,11 @@ module Picto::Api
         optional :limit,
                  type: Integer,
                  default: MAX_LIMIT,
-                 desc: 'limit the number of results by this number'
+                 desc: 'number of results to return per page'
         optional :offset,
                  type: Integer,
                  default: 0,
-                 desc: 'skip this number of results from result set beginning'
+                 desc: 'skip number of results from beginning'
       end
       get  do
         scope  = Image.includes(:user)
