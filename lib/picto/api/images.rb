@@ -5,30 +5,6 @@ module Picto::Api
   class Images < Component
     MAX_LIMIT = 100
 
-    helpers do
-      params :user_params do
-        requires :user, type: Hash do
-          requires :email, type: String
-        end
-      end
-
-      params :image_params do
-        requires :image, type: Hash do
-          requires :file, type: Rack::Multipart::UploadedFile
-        end
-      end
-
-      def user_params
-        declared(params, include_missing: false)[:user]
-      end
-
-      def image_params
-        res = declared(params, include_missing: false)[:image]
-        res[:file] = res[:file][:tempfile]
-        res
-      end
-    end
-
     resources :images do
       desc 'Get all images'
       params do
@@ -56,17 +32,6 @@ module Picto::Api
             offset: offset
           }
         }
-      end
-
-      desc 'Create image'
-      params do
-        use :user_params
-        use :image_params
-      end
-      post do
-        user = User.find_or_create_by!(user_params)
-        image = user.images.create!(image_params)
-        serialize(image, Serializer::Image)
       end
     end
   end
