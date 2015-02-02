@@ -8,8 +8,22 @@ module Picto::Api
   class Routes
     def initialize
       @app = Rack::Builder.new do
+        use Rack::Static,
+            urls: %w(/build /css),
+            root: File.join(Picto.root, 'client')
+
         map('/api') { run Picto::Api::Root }
         map('/sidekiq') { run Sidekiq::Web }
+        map('/') do
+          run(lambda do |env|
+                [ 200,
+                  { 'Content-Type'  => 'text/html',
+                    'Cache-Control' => 'public, max-age=86400'
+                  },
+                  File.open(File.join(Picto.root, 'client', 'index.html'), File::RDONLY)
+                ]
+              end)
+        end
       end
     end
 

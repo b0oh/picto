@@ -11,3 +11,5 @@ production:
 
   db:
     url: <%= ENV['DATABASE_URL'] %>
+
+  mail_to_send: postmaster@app56b83c4bc27d48e285c49ee7d80add68.mailgun.org

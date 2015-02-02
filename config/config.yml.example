@@ -9,6 +9,8 @@ defaults: &defaults
   redis:
     url: redis://localhost:6379
 
+  mail_to_send: <mailgun mail>
+
 db_defaults: &db_defaults
   adapter: postgresql
   encoding: utf8

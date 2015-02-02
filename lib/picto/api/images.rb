@@ -18,7 +18,7 @@ module Picto::Api
                  desc: 'skip number of results from beginning'
       end
       get  do
-        scope  = Image.includes(:user)
+        scope  = Image.includes(:user).order('created_at DESC')
         total  = scope.count
         limit  = params[:limit] > MAX_LIMIT ? MAX_LIMIT : params[:limit]
         offset = params[:offset]
