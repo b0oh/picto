@@ -19,8 +19,12 @@ class Picto::ImageUploader < CarrierWave::Uploader::Base
   WIDTH  = 400
   HEIGHT = 300
 
+  BORDER_WIDTH = 10
+  BORDER_COLORS = %w(yellow blue cyan orange brown gray)
+
   process convert: 'png'
-  process resize_to_fill: [WIDTH, HEIGHT]
+  process resize_to_fill: [WIDTH - BORDER_WIDTH*2, HEIGHT - BORDER_WIDTH*2]
+  process :borderize
 
   def extension_white_list
     %w(jpg jpeg gif png)
@@ -40,5 +44,17 @@ class Picto::ImageUploader < CarrierWave::Uploader::Base
         image = MiniMagick::Image.open(file.path)
         { width: image[:width], height: image[:height] }
       end
+  end
+
+  private
+
+  def borderize
+    manipulate! do |img|
+      img.combine_options do |c|
+        c.bordercolor BORDER_COLORS.sample
+        c.border      BORDER_WIDTH
+      end
+      img
+    end
   end
 end
