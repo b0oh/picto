@@ -14,8 +14,9 @@ module Picto
       include Sidekiq::Worker
 
       def perform(email, path)
+        # HACK: Ugly hack for heroku, because heroku immediately remove temporary files
         data = Sidekiq.redis { |c| c.get(path) }
-
+        # HACK: ImageUploader needs a file extension
         file = Tempfile.new(['', File.extname(path)])
         file.binmode
         file.write data

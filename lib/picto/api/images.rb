@@ -1,21 +1,9 @@
-require 'grape'
+require 'picto/api/component'
 require 'picto/api/serializer/image'
 
 module Picto::Api
-  class Images < Grape::API
+  class Images < Component
     MAX_LIMIT = 100
-
-    rescue_from Grape::Exceptions::ValidationErrors do |e|
-      rack_response({ error: { status: :invalid_param, message: e.message }}.to_json, 400)
-    end
-
-    rescue_from ActiveRecord::RecordNotFound do |_|
-      rack_response({ error: { status: :not_found, message: 'not found' }}.to_json, 404)
-    end
-
-    rescue_from ActiveRecord::RecordInvalid do |e|
-      rack_response({ error: { status: :unprocessable_entity, message: e.message }}.to_json, 422)
-    end
 
     helpers do
       params :user_params do
@@ -39,17 +27,7 @@ module Picto::Api
         res[:file] = res[:file][:tempfile]
         res
       end
-
-      def serialize(item, serializer)
-        if item.respond_to?(:to_ary)
-          ActiveModel::ArraySerializer.new(item, each_serializer: serializer).as_json
-        else
-          serializer.new(item).as_json
-        end
-      end
     end
-
-    format :json
 
     resources :images do
       desc 'Get all images'
