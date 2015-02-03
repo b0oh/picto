@@ -20,7 +20,8 @@ class Picto::ImageUploader < CarrierWave::Uploader::Base
   HEIGHT = 300
 
   BORDER_WIDTH = 10
-  BORDER_COLORS = %w(yellow blue cyan orange brown gray)
+  BORDER_COLORS = %w(yellow blue cyan orange brown grey aqua fuchsia indigo
+                     lime orchid purple red violet)
 
   process convert: 'png'
   process resize_to_fill: [WIDTH - BORDER_WIDTH*2, HEIGHT - BORDER_WIDTH*2]
