@@ -18,6 +18,26 @@ task :console do
 end
 task c: :console
 
+desc 'Pings PING_URL to keep a dyno alive'
+task :dyno_ping do
+  require "net/http"
+
+  if ENV['PING_URL']
+    uri = URI(ENV['PING_URL'])
+    Net::HTTP.get_response(uri)
+  end
+end
+
+desc 'Cache urls'
+task :cache_urls do
+  require 'picto'
+
+  Image.find_each { |i| i.send :cache_url }
+end
+
+desc 'Heroku tasks'
+task heroku: [:dyno_ping, :cache_urls]
+
 RSpec::Core::RakeTask.new(:spec)
 
 task default: :spec
