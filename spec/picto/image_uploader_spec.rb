@@ -5,14 +5,14 @@ describe Picto::ImageUploader do
   include CarrierWave::Test::Matchers
 
   before do
-     Picto::ImageUploader.enable_processing = true
+    Picto::ImageUploader.enable_processing = true
     image = Image.new uid: 'abcdef'
     @uploader = Picto::ImageUploader.new(image, :file)
     @uploader.store!(File.open(File.join(Picto.root, 'spec', 'fixtures', 'chappie.jpg')))
   end
 
   after do
-     Picto::ImageUploader.enable_processing = false
+    Picto::ImageUploader.enable_processing = false
     @uploader.remove!
   end
 
