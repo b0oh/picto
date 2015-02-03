@@ -66,6 +66,23 @@ $ bundle exec sidekiq -c 5 -r ./lib/picto.rb
     }
   ```
 
+### Get config:
+
+```httph
+GET: /api/config
+```
+
+**Response:**
+
+```httph-javascript
+Status: 200 OK
+
+{ "config": {
+    "mail": "to@send_pics"
+  }
+}
+```
+
 ### Get images:
 
 Request: | &nbsp;     | &nbsp;
